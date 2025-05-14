@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Scalar API Reference</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      let specUrl = params.get("url");
+
+      if (!specUrl) {
+        specUrl = prompt("Enter OpenAPI spec URL:");
+        window.location.search = `url=${encodeURIComponent(specUrl)}`;
+      }
+
+      const script = document.createElement("script");
+      script.id = "api-reference";
+      script.setAttribute("data-url", specUrl);
+      script.setAttribute(
+        "data-configuration",
+        JSON.stringify({ theme: "purple" })
+      );
+      document.body.appendChild(script);
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@scalar/api-reference"></script>
+  </body>
+</html>
